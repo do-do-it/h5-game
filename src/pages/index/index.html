@@ -5,14 +5,18 @@
   <% if (htmlWebpackPlugin.files.favicon) { %>
     <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
   <% } %>
-  <title>index</title>
+  <title>游戏列表</title>
   <% for (var css in htmlWebpackPlugin.files.css) { %>
     <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.css[css] %>">
   <% } %>
   <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>
 </head>
 <body>
-    hello world
+    <div id="app">
+      <ul>
+        <li><a href="../game/ball/index.html">1</a></li>
+      </ul>
+    </div>
     <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
 </body>
 </html>
