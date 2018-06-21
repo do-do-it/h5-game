@@ -4,21 +4,26 @@ import H5Game from ".";
  * @Author: Zhang Min 
  * @Date: 2018-06-20 11:52:01 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-20 18:03:45
+ * @Last Modified time: 2018-06-21 08:46:05
  */
 
 class circle {
-    constructor(game, x = 0, y = 0, r = 10) {
+    constructor(game, x = 0, y = 0, r = 10, color = '#000') {
         this.dpr = H5Game.device.dpr;
         this.ctx = game.ctx;
         this.x = x;
         this.y = y;
         this.r = r;
 
-        this.color = '#000';
+        this.color = color;
+
         this.scaleX = 1;
         this.scaleY = 1;
         this.size = 1;
+
+        this.vx = 0;
+        this.vy = 0;
+        this.v = 0;
     }
     stroke() {
         this.ctx.save();

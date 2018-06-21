@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-06-20 11:52:01 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-20 20:12:28
+ * @Last Modified time: 2018-06-21 08:47:56
  */
 
 import event from './event';
@@ -49,6 +49,12 @@ const game = function (width, height, id = 'game') {
 game.prototype = {
     clear() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+    getRandomColor() {
+        const r = Math.floor(Math.random() * 256);
+        const g = Math.floor(Math.random() * 256);
+        const b = Math.floor(Math.random() * 256);
+        return "rgb(" + r + ',' + g + ',' + b + ")";
     },
     getMouse(e) {
         if (!e.pageX) {
