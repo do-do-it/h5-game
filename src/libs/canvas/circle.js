@@ -4,7 +4,7 @@ import H5Game from ".";
  * @Author: Zhang Min 
  * @Date: 2018-06-20 11:52:01 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-21 08:46:05
+ * @Last Modified time: 2018-06-21 10:38:45
  */
 
 class circle {
@@ -24,6 +24,8 @@ class circle {
         this.vx = 0;
         this.vy = 0;
         this.v = 0;
+        this.dv = 0;
+        this.angle = 0;
     }
     stroke() {
         this.ctx.save();
@@ -58,6 +60,10 @@ class circle {
         if (this.size !== 1) {
             this.scaleX = this.size;
             this.scaleY = this.size;
+        }
+        if (this.v !== 0) {
+            this.vx = Math.cos(this.angle) * this.v + Math.cos(this.angle) * this.dv;
+            this.vy = Math.sin(this.angle) * this.v + Math.sin(this.angle) * this.dv;
         }
     }
 }

@@ -2,7 +2,7 @@
  * @Author: Zhang Min 
  * @Date: 2018-06-13 08:04:58 
  * @Last Modified by: Zhang Min
- * @Last Modified time: 2018-06-21 09:16:07
+ * @Last Modified time: 2018-06-21 10:57:30
  */
 
 import H5Game from '@src/libs/canvas/index.js';
@@ -28,10 +28,12 @@ $(() => {
             this.balls = [];
             this.r = 50;
             this.angle = 0;
-            for (let index = 0; index < 10; index++) {
+            for (let index = 0; index < 1; index++) {
                 const params = this.getRandomParams();
                 const ball = new H5Game.circle(game, params.x, params.y, params.r, params.color);
-                ball.vy = 2;
+                ball.v = 1;
+                //ball.angle = 120 * Math.PI / 180;
+                ball.dv = .5;
                 this.balls.push(ball);
             }
         }
@@ -46,22 +48,20 @@ $(() => {
             this.angle += .05;
             // this.r += .1;
             this.balls.forEach(item => {
-                const ps = H5Game.physic.circleMovement({
-                    x: this.device.width / 2,
-                    y: this.device.height / 2
-                }, item, this.angle, this.r + item.r);
-                item.x = ps.x;
-                item.y = ps.y;
+                item.dv -= .01;
+                item.angle = this.angle * Math.PI / 180;
+                //console.log(item.angle);
+                // const ps = H5Game.physic.circleMovement(this.device.width / 2, this.device.height / 2, this.angle, this.r, 100);
+                // item.x = ps.x;
+                // item.y = ps.y;
                 // if (item.y >= this.device.height - item.r) {
                 //     item.vy *= -0.9;
                 // }
                 // if (item.y <= item.r) {
                 //     item.vy *= 0.9;
                 // }
-            })
-            
-            this.balls.forEach(item => {
-                // item.y += item.vy;
+                item.x += item.vx;
+                item.y += item.vy;
                 item.fill();
             })
         }
@@ -71,7 +71,7 @@ $(() => {
             const r = Math.floor(Math.random()*10) + 10;
             const color = game.getRandomColor();
             return {
-                x, y: 0, r, color
+                x, y, r, color
             }
         }
     }
